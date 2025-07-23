@@ -116,16 +116,21 @@ class ImageLoader {
                 if (entry.isIntersecting) {
                     const img = entry.target;
                     
-                    // Add load event listener
-                    img.addEventListener('load', () => {
+                    // Check if image is already loaded
+                    if (img.complete && img.naturalWidth > 0) {
                         img.classList.add('loaded');
-                    });
-                    
-                    // Add error handler
-                    img.addEventListener('error', () => {
-                        img.classList.add('error');
-                        console.warn('Failed to load image:', img.src);
-                    });
+                    } else {
+                        // Add load event listener for images that aren't loaded yet
+                        img.addEventListener('load', () => {
+                            img.classList.add('loaded');
+                        });
+                        
+                        // Add error handler
+                        img.addEventListener('error', () => {
+                            img.classList.add('error');
+                            console.warn('Failed to load image:', img.src);
+                        });
+                    }
                     
                     // Stop observing this image
                     observer.unobserve(img);
@@ -139,7 +144,15 @@ class ImageLoader {
 
         // Observe all lazy images
         lazyImages.forEach(img => {
-            imageObserver.observe(img);
+            // Check if image is already in viewport and loaded
+            const rect = img.getBoundingClientRect();
+            const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+            
+            if (isInViewport && img.complete && img.naturalWidth > 0) {
+                img.classList.add('loaded');
+            } else {
+                imageObserver.observe(img);
+            }
         });
         
         // Handle eager-loaded images (like hero image)
