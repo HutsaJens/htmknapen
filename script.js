@@ -83,6 +83,9 @@ class Router {
                 
                 // Re-initialize image loading for new content
                 ImageLoader.init();
+                
+                // Preload images for other pages for faster navigation
+                ImageLoader.preloadCriticalImages();
             }, 150);
         }
     }
@@ -101,26 +104,74 @@ class Router {
     }
 }
 
-// Image lazy loading and optimization
+// Enhanced image lazy loading and optimization
 class ImageLoader {
     static init() {
-        const images = document.querySelectorAll('img[src]');
+        // Handle all images that should be lazy loaded
+        const lazyImages = document.querySelectorAll('img[loading="lazy"]');
         
+        // Intersection Observer for lazy loading
         const imageObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const img = entry.target;
+                    
+                    // Add load event listener
                     img.addEventListener('load', () => {
                         img.classList.add('loaded');
                     });
+                    
+                    // Add error handler
+                    img.addEventListener('error', () => {
+                        img.classList.add('error');
+                        console.warn('Failed to load image:', img.src);
+                    });
+                    
+                    // Stop observing this image
                     observer.unobserve(img);
                 }
             });
+        }, {
+            // Start loading when image is 50px from viewport
+            rootMargin: '50px',
+            threshold: 0.01
         });
 
-        images.forEach(img => {
-            img.classList.add('loading');
+        // Observe all lazy images
+        lazyImages.forEach(img => {
             imageObserver.observe(img);
+        });
+        
+        // Handle eager-loaded images (like hero image)
+        const eagerImages = document.querySelectorAll('img[loading="eager"]');
+        eagerImages.forEach(img => {
+            if (img.complete) {
+                img.classList.add('loaded');
+            } else {
+                img.addEventListener('load', () => {
+                    img.classList.add('loaded');
+                });
+                img.addEventListener('error', () => {
+                    img.classList.add('error');
+                    console.warn('Failed to load image:', img.src);
+                });
+            }
+        });
+    }
+    
+    // Preload critical images for next page
+    static preloadCriticalImages() {
+        const criticalImages = [
+            'assets/remote_controll.webp',
+            'assets/captain.webp'
+        ];
+        
+        criticalImages.forEach(src => {
+            const link = document.createElement('link');
+            link.rel = 'preload';
+            link.as = 'image';
+            link.href = src;
+            document.head.appendChild(link);
         });
     }
 }
