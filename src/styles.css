@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+/* Custom maritime gradient */
+@utility bg-maritime-gradient {
+  background: linear-gradient(135deg, #0f172a 0%, #1e40af 50%, #0ea5e9 100%);
+}
