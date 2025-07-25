@@ -1,6 +1,6 @@
 # HTMknapen - Smart Steering Solutions
 
-Welcome to the HTMknapen website! We are a group of friends developing innovative marine technology solutions with a modern, professional web presence featuring navigation and clean routing.
+Welcome to the HTMknapen website! We are a group of friends developing innovative marine technology solutions with a modern, professional Angular web application featuring clean routing and responsive design.
 
 ## About Us
 
@@ -24,26 +24,24 @@ Meet the talented individuals behind HTMknapen:
 - **Max** - Electrical Engineer
 - **Jens** - Software Engineer (Website creator, owner of [Bertenx.nl](https://bertenx.nl))
 
-## Website Features
+## Technology Stack
 
-This repository contains our modern company website built with:
-- **HTML5** with semantic structure
-- **CSS3** with modern blue gradient design and animations
-- **Vanilla JavaScript** with client-side routing system
-- **Responsive design** optimized for all devices
-- **Navigation system** with fixed header and mobile hamburger menu
-- **Clean URLs** without .html extensions using client-side routing
-- **Asset integration** with professional imagery and product galleries
+This website is built with modern technologies:
 
-### Website Structure
+- **Angular 20** - Latest Angular framework with standalone components
+- **Tailwind CSS v4** - Modern utility-first CSS framework
+- **TypeScript** - Strongly typed JavaScript
+- **Signals** - Angular's reactive state management
+- **Lazy Loading** - Optimized component loading
 
-The website features a single-page application (SPA) with client-side routing providing three main sections:
+## Development
 
-- **Home** (`/`) - Hero section with call-to-action buttons and feature highlights
-- **Solutions** (`/solutions`) - Dedicated Steermate 1 product showcase with detailed information and gallery
-- **Team** (`/team`) - Enhanced team member profiles with individual descriptions and roles
+### Prerequisites
 
-### Running the Website Locally
+- Node.js 20.x or higher
+- npm 10.x or higher
+
+### Getting Started
 
 1. Clone this repository:
    ```bash
@@ -51,56 +49,84 @@ The website features a single-page application (SPA) with client-side routing pr
    cd htmknapen
    ```
 
-2. Serve the files using a local web server:
+2. Install dependencies:
    ```bash
-   # Using Python 3
-   python3 -m http.server 8000
-   
-   # Using Node.js (if you have http-server installed)
-   npx http-server
-   
-   # Using PHP
-   php -S localhost:8000
+   npm install
    ```
 
-3. Open your browser and navigate to `http://localhost:8000`
+3. Start the development server:
+   ```bash
+   npm start
+   ```
 
-### File Structure
+4. Open your browser and navigate to `http://localhost:4200`
 
-- `index.html` - Main SPA with navigation system and page templates
-- `style.css` - Modern CSS with blue gradient theme and responsive design
-- `script.js` - Client-side routing and navigation functionality
-- `assets/` - Image assets including hero images, product photos, and team pictures
-- `README.md` - This documentation file
+### Building for Production
+
+```bash
+npm run build
+```
+
+The build artifacts will be stored in the `dist/` directory.
+
+### Project Structure
+
+```
+src/
+├── app/
+│   ├── components/
+│   │   ├── home/
+│   │   ├── solutions/
+│   │   ├── team/
+│   │   └── shared/
+│   ├── app.ts              # Main app component
+│   ├── app.html            # App template
+│   ├── app.routes.ts       # Routing configuration
+│   └── app.config.ts       # App configuration
+├── styles.css              # Global styles with Tailwind
+├── index.html              # Main HTML file
+└── main.ts                 # Bootstrap file
+```
+
+## Architecture & Best Practices
+
+This project follows Angular best practices as outlined in our development guidelines:
+
+- **Standalone Components**: All components use the new standalone approach
+- **Signals**: State management using Angular signals
+- **Lazy Loading**: Feature routes are lazy loaded for performance
+- **OnPush Change Detection**: Optimized change detection strategy
+- **TypeScript Strict Mode**: Enhanced type safety
+- **Responsive Design**: Mobile-first approach with Tailwind CSS
+
+## Website Features
+
+- **Modern Angular Architecture** with latest Angular 20 features
+- **Responsive Design** optimized for all devices
+- **Fast Loading** with lazy-loaded components
+- **Clean URLs** with Angular Router
+- **SEO-friendly** structure with proper meta tags
+- **Professional Design** with maritime blue gradient theme
+- **Asset Integration** with optimized images
+
+### Website Sections
+
+The website features three main sections:
+
+- **Home** (`/`) - Hero section with call-to-action buttons and feature highlights
+- **Solutions** (`/solutions`) - Dedicated Steermate 1 product showcase with detailed information
+- **Team** (`/team`) - Team member profiles with individual descriptions and roles
 
 ## Design & User Experience
 
 The website features a modern design with:
-- **Blue gradient color scheme** creating a professional maritime aesthetic
+
+- **Maritime blue gradient color scheme** creating a professional aesthetic
 - **Fixed navigation header** with active states and mobile responsiveness
-- **Smooth page transitions** with fade effects between sections
+- **Smooth page transitions** with Angular Router
 - **Interactive elements** with hover effects and animations
-- **Asset integration** showcasing product images and team photos
-- **Mobile-first responsive design** with hamburger menu for smaller screens
+- **Mobile-first responsive design** with collapsible navigation
 - **SEO-friendly structure** with semantic HTML and proper meta tags
-
-## Navigation & Routing
-
-The website implements a sophisticated client-side routing system:
-- **Clean URLs** without .html extensions (/, /solutions, /team)
-- **Browser history support** with proper back/forward button functionality
-- **Active navigation states** showing the current page
-- **Mobile navigation** with collapsible hamburger menu
-- **Smooth transitions** between different sections
-
-## Assets Integration
-
-All visual assets have been professionally integrated:
-- `hero_header.png` - Main hero image showcasing maritime excellence
-- `very_safe.png`, `wireless_tech.png`, `engineering_workspace.png` - Feature highlight cards
-- `remote_controll.png` - Primary Steermate 1 product showcase
-- `steering_wheel_detail.png`, `boat_interior.png`, `marina_hub.png` - Product gallery
-- `captain.png` - Team introduction and leadership representation
 
 ## Contact
 
