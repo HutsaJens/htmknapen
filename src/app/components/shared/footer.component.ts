@@ -1,28 +1,152 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ButtonModule } from 'primeng/button';
+import { DividerModule } from 'primeng/divider';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-footer',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <footer class="bg-gray-800 text-white py-8">
+    <footer class="bg-surface-800 text-white py-12">
       <div class="container mx-auto px-4">
-        <div class="flex flex-col sm:flex-row justify-between items-center">
-          <p class="text-sm mb-4 sm:mb-0">© 2025 HTMknapen - Smart Steering Solutions</p>
-          <div class="social-links">
-            <a 
-              href="https://www.instagram.com/htmknapen" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              class="text-white hover:text-blue-400 transition-colors"
-              aria-label="Volg ons op Instagram">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-              </svg>
-            </a>
+        <div class="grid md:grid-cols-3 gap-8 mb-8">
+          <!-- Company Info -->
+          <div class="space-y-4">
+            <div class="flex items-center space-x-3">
+              <i class="fas fa-anchor text-2xl text-blue-400"></i>
+              <div>
+                <h3 class="text-xl font-bold">HTMknapen</h3>
+                <p class="text-sm text-gray-300">Smart Steering Solutions</p>
+              </div>
+            </div>
+            <p class="text-gray-300 leading-relaxed">
+              Innovatieve technologie voor veiliger en gemakkelijker varen. 
+              Wij zijn uw partner in maritime technologie.
+            </p>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="space-y-4">
+            <h4 class="text-lg font-semibold flex items-center">
+              <i class="fas fa-link mr-2 text-blue-400"></i>
+              Snelle links
+            </h4>
+            <div class="space-y-2">
+              <p-button 
+                label="Home" 
+                icon="fas fa-home" 
+                [text]="true" 
+                size="small"
+                class="footer-link">
+              </p-button>
+              <p-button 
+                label="Oplossingen" 
+                icon="fas fa-cogs" 
+                [text]="true" 
+                size="small"
+                class="footer-link">
+              </p-button>
+              <p-button 
+                label="Ons Team" 
+                icon="fas fa-users" 
+                [text]="true" 
+                size="small"
+                class="footer-link">
+              </p-button>
+            </div>
+          </div>
+
+          <!-- Contact & Social -->
+          <div class="space-y-4">
+            <h4 class="text-lg font-semibold flex items-center">
+              <i class="fas fa-address-book mr-2 text-blue-400"></i>
+              Contact
+            </h4>
+            <div class="space-y-3">
+              <div class="flex items-center space-x-3 text-gray-300">
+                <i class="fas fa-envelope text-blue-400"></i>
+                <span class="text-sm">info@htmknapen.nl</span>
+              </div>
+              <div class="flex items-center space-x-3 text-gray-300">
+                <i class="fas fa-map-marker-alt text-blue-400"></i>
+                <span class="text-sm">Nederland</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <p-button 
+                  icon="fab fa-instagram" 
+                  [text]="true" 
+                  [raised]="false"
+                  size="small"
+                  class="social-button"
+                  pTooltip="Volg ons op Instagram"
+                  tooltipPosition="top">
+                </p-button>
+                <p-button 
+                  icon="fab fa-linkedin" 
+                  [text]="true" 
+                  [raised]="false"
+                  size="small"
+                  class="social-button"
+                  pTooltip="Verbind met ons op LinkedIn"
+                  tooltipPosition="top">
+                </p-button>
+                <p-button 
+                  icon="fas fa-ship" 
+                  [text]="true" 
+                  [raised]="false"
+                  size="small"
+                  class="social-button"
+                  pTooltip="Maritime innovatie"
+                  tooltipPosition="top">
+                </p-button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p-divider></p-divider>
+
+        <div class="flex flex-col sm:flex-row justify-between items-center pt-6">
+          <p class="text-sm text-gray-400 mb-4 sm:mb-0 flex items-center">
+            <i class="fas fa-copyright mr-2"></i>
+            2025 HTMknapen - Smart Steering Solutions
+          </p>
+          <div class="text-sm text-gray-400 flex items-center">
+            <i class="fas fa-code mr-2 text-blue-400"></i>
+            Gebouwd met Angular & PrimeNG
           </div>
         </div>
       </div>
     </footer>
-  `
+  `,
+  styles: [`
+    .footer-link ::ng-deep .p-button {
+      color: #d1d5db !important;
+      padding: 0.25rem 0 !important;
+      justify-content: flex-start !important;
+      background: transparent !important;
+      border: none !important;
+    }
+    
+    .footer-link ::ng-deep .p-button:hover {
+      color: #60a5fa !important;
+      background: transparent !important;
+    }
+    
+    .social-button ::ng-deep .p-button {
+      color: #9ca3af !important;
+      background: transparent !important;
+      border: 1px solid #374151 !important;
+      width: 2.5rem !important;
+      height: 2.5rem !important;
+    }
+    
+    .social-button ::ng-deep .p-button:hover {
+      color: #ffffff !important;
+      background: #3b82f6 !important;
+      border-color: #3b82f6 !important;
+    }
+  `],
+  imports: [ButtonModule, DividerModule, TooltipModule]
 })
 export class FooterComponent {}
